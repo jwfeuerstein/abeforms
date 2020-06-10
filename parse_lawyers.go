@@ -31,7 +31,6 @@ func parseEmails(rows [][]string, location string) []string {
 		if i != 0 {
 			lawyersSlice = append(lawyersSlice, rows[i][3])
 		}
-
 	}
 	return lawyersSlice
 }

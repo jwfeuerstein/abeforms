@@ -2,7 +2,8 @@ import React from 'react';
 import './App.css';
 import { useForm } from "react-hook-form";
 
-function App() {
+class App extends React.Component {
+    render(){
     const {register,handleSubmit, errors} = useForm();
 
     const onSubmit = (data) => {
@@ -47,6 +48,7 @@ function App() {
       </form>
       </div>
   );
+    }
 }
 
-export default App;
+ReactDOM.render(<App />, document.getElementById('app'))
