@@ -21,10 +21,10 @@ import (
 const connectionString = "mongodb+srv://akkshay:%40Whatever12@abelegal-rrztu.gcp.mongodb.net/test"
 
 // Database Name
-const dbName = "test"
+const dbName = "AbeDB"
 
 // Collection name
-const collName = "lawyers"
+const collName = "clients"
 
 // collection object/instance
 var collection *mongo.Collection
@@ -75,10 +75,22 @@ func CreateClientsInfo(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	w.Header().Set("Access-Control-Allow-Methods", "POST")
 	w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
-	var task models.Clients
-	_ = json.NewDecoder(r.Body).Decode(&task)
-	// fmt.Println(task, r.Body)
+	var client models.Clients
+	_ = json.NewDecoder(r.Body).Decode(&client)
+	insertOneClient(client)
+	json.NewEncoder(w).Encode(client)
+	fmt.Println(client)
 
+}
+
+func insertOneClient(client models.Clients) {
+	insertResult, err := collection.InsertOne(context.Background(), client)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Println("Inserted a Single Record ", insertResult.InsertedID)
 }
 
 // get all task from the DB and return it
