@@ -25,7 +25,7 @@ func readCSV(name string) [][]string {
 	return rows
 }
 
-func parseLawyer(rows [][]string, location string) []string {
+func parseEmails(rows [][]string, location string) []string {
 	var lawyersSlice []string
 	for i := range rows {
 		if i != 0 {
