@@ -56,8 +56,8 @@ func init() {
 	fmt.Println("Collection instance created!")
 }
 
-// GetAllTask get all the task route
-// Gets all the email addresses of lawyers from the database
+
+// GetAllLawyerEmails Gets all the email addresses of lawyers from the database
 func GetAllLawyerEmails(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Context-Type", "application/x-www-form-urlencoded")
 	w.Header().Set("Access-Control-Allow-Origin", "*")
@@ -65,18 +65,20 @@ func GetAllLawyerEmails(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(payload)
 }
 
-// CreateTask create task route
-// Posts info of client to the next task at hand
+func sendEmails(){
+	//sendemails
+}
+
+// CreateClientsInfo Posts info of client to the next task at hand
 func CreateClientsInfo(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Context-Type", "application/x-www-form-urlencoded")
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	w.Header().Set("Access-Control-Allow-Methods", "POST")
 	w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
-	var task models.ToDoList
+	var task models.Clients
 	_ = json.NewDecoder(r.Body).Decode(&task)
 	// fmt.Println(task, r.Body)
-	insertOneTask(task)
-	json.NewEncoder(w).Encode(task)
+
 }
 
 // get all task from the DB and return it

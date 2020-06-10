@@ -10,8 +10,8 @@ func Router() *mux.Router {
 
 	router := mux.NewRouter()
 
-	router.HandleFunc("/api/task", middleware.GetAllLawyerEmails).Methods("GET", "OPTIONS")
-	router.HandleFunc("/api/task", middleware.CreateClientsInfo).Methods("POST", "OPTIONS")
+	router.HandleFunc("/api/client", middleware.GetAllLawyerEmails).Methods("GET", "OPTIONS")
+	router.HandleFunc("/api/client", middleware.CreateClientsInfo).Methods("POST", "OPTIONS")
 
 	return router
 }
