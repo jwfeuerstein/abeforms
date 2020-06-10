@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import { useForm } from "react-hook-form";
 
-class App extends React.Component {
+function App(){
     render(){
     const {register,handleSubmit, errors} = useForm();
 
@@ -51,4 +51,4 @@ class App extends React.Component {
     }
 }
 
-ReactDOM.render(<App />, document.getElementById('app'))
+export default App;
