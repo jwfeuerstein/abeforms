@@ -25,9 +25,11 @@ const dbName = "AbeDB"
 
 // Collection name
 const collName = "clients"
+const lawName = "lawyers"
 
 // collection object/instance
 var collection *mongo.Collection
+var lawyerCollection *mongo.Collection
 
 // create connection with mongo db
 func init() {
@@ -52,10 +54,12 @@ func init() {
 	fmt.Println("Connected to MongoDB!")
 
 	collection = client.Database(dbName).Collection(collName)
+	lawyerCollection = client.Database(dbName).Collection(lawName)
 
 	fmt.Println("Collection instance created!")
 }
 
+//Template for future projects -> Grabs all clients infos
 func getClientsInfo() []primitive.M {
 	cur, err := collection.Find(context.Background(), bson.D{{}})
 	if err != nil {
@@ -68,8 +72,6 @@ func getClientsInfo() []primitive.M {
 		if e != nil {
 			log.Fatal(e)
 		}
-		// fmt.Println("cur..>", cur, "result", reflect.TypeOf(result), reflect.TypeOf(result["_id"]))
-		// results will contain the emails of lawyers
 		results = append(results, result)
 
 	}
@@ -82,14 +84,30 @@ func getClientsInfo() []primitive.M {
 }
 
 // GetAllLawyerEmails Gets all the email addresses of lawyers from the database
-func GetAllLawyerEmails(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Context-Type", "application/x-www-form-urlencoded")
-	w.Header().Set("Access-Control-Allow-Origin", "*")
-	payload := getAllLawyers()
-	json.NewEncoder(w).Encode(payload)
-}
+/*func GetAllLawyerEmails() []primitive.M {
+	cur, err := collection.Find(context.Background(), bson.D{{}})
+	if err != nil {
+		log.Fatal(err)
+	}
+	var results []primitive.M
+	for cur.Next(context.Background()) {
+		var result bson.M
+		e := cur.Decode(&result)
+		if e != nil {
+			log.Fatal(e)
+		}
+		results = append(results, result)
 
-func sendEmails() {
+	}
+	if err := cur.Err(); err != nil {
+		log.Fatal(err)
+	}
+
+	cur.Close(context.Background())
+	return results
+}*/
+
+func sendEmails([]interface{}, string) {
 	//sendemails
 }
 
@@ -102,9 +120,17 @@ func CreateClientsInfo(w http.ResponseWriter, r *http.Request) {
 	var client models.Clients
 	_ = json.NewDecoder(r.Body).Decode(&client)
 	insertOneClient(client)
-	json.NewEncoder(w).Encode(client)
-	fmt.Println(client)
-	fmt.Println(getClientsInfo())
+	clientEmail := client.EmailAddress
+	//fmt.Println(getClientsInfo())
+	//go getAllLawyers()
+	lawyersPrimitive := getAllLawyers()
+	var lawyersEmails []interface{}
+	for i, b := range lawyersPrimitive {
+		if i != 0 {
+			lawyersEmails = append(lawyersEmails, b[("email")])
+		}
+	}
+	sendEmails(lawyersEmails, clientEmail)
 
 }
 
@@ -116,13 +142,13 @@ func insertOneClient(client models.Clients) *mongo.InsertOneResult {
 		log.Fatal(err)
 	}
 
-	fmt.Println("Inserted a Single Record ", insertResult.InsertedID)
+	fmt.Println("Inserted a Single Record: ", insertResult.InsertedID)
 	return insertResult
 } //insertResult contains all info
 
 // get all task from the DB and return it
 func getAllLawyers() []primitive.M {
-	cur, err := collection.Find(context.Background(), bson.D{{}})
+	cur, err := lawyerCollection.Find(context.Background(), bson.D{{}})
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -134,7 +160,6 @@ func getAllLawyers() []primitive.M {
 		if e != nil {
 			log.Fatal(e)
 		}
-		// fmt.Println("cur..>", cur, "result", reflect.TypeOf(result), reflect.TypeOf(result["_id"]))
 		// results will contain the emails of lawyers
 		results = append(results, result)
 
@@ -145,5 +170,5 @@ func getAllLawyers() []primitive.M {
 	}
 
 	cur.Close(context.Background())
-	return results
+	return results //primitive.M object of bSON objects
 }
