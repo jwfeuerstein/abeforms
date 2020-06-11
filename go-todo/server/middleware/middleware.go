@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"net/smtp"
 
 	"../models"
 
@@ -84,7 +85,7 @@ func getClientsInfo() []primitive.M {
 }
 
 // GetAllLawyerEmails Gets all the email addresses of lawyers from the database
-/*func GetAllLawyerEmails() []primitive.M {
+func GetAllLawyerEmails() []primitive.M {
 	cur, err := collection.Find(context.Background(), bson.D{{}})
 	if err != nil {
 		log.Fatal(err)
@@ -105,10 +106,23 @@ func getClientsInfo() []primitive.M {
 
 	cur.Close(context.Background())
 	return results
-}*/
+}
 
-func sendEmails([]interface{}, string) {
-	//sendemails
+func sendEmails(lawyerEmails []string, name string, clientEmail string) {
+	fmt.Println("Goes to Emails")
+	auth := smtp.PlainAuth("", "austin.abe.legal@gmail.com", "ambusher922", "smtp.gmail.com")
+	// Here we do it all: connect to our server, set up a message and send it
+	to := lawyerEmails
+	msg := []byte("To: " + clientEmail + "\r\n" +
+		"Subject: New Client Alert\r\n" +
+		"\r\n" +
+		name + "\r\n")
+	err := smtp.SendMail("smtp.gmail.com:587", auth, "austin.abe.legal@gmail.com", to, msg)
+	if err != nil {
+		log.Fatal(err)
+	} else {
+		fmt.Println("Emails is sent")
+	}
 }
 
 // CreateClientsInfo Posts info of client to the next task at hand
@@ -120,17 +134,17 @@ func CreateClientsInfo(w http.ResponseWriter, r *http.Request) {
 	var client models.Clients
 	_ = json.NewDecoder(r.Body).Decode(&client)
 	insertOneClient(client)
-	clientEmail := client.EmailAddress
+	json.NewEncoder(w).Encode(client)
 	//fmt.Println(getClientsInfo())
 	//go getAllLawyers()
+	fmt.Println(client)
 	lawyersPrimitive := getAllLawyers()
-	var lawyersEmails []interface{}
-	for i, b := range lawyersPrimitive {
-		if i != 0 {
-			lawyersEmails = append(lawyersEmails, b[("email")])
-		}
+	var lawyersEmails []string
+	for _, b := range lawyersPrimitive {
+		lawyersEmails = append(lawyersEmails, b[("email")].(string))
 	}
-	sendEmails(lawyersEmails, clientEmail)
+	fmt.Println(lawyersEmails)
+	sendEmails(lawyersEmails, client.FirstName, client.EmailAddress)
 
 }
 

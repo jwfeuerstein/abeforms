@@ -63,8 +63,10 @@ class Clients extends Component{
                         type="text"
                         class="form-control"
                         placeholder="Enter first name"
-                        name="firstName"
+                        name= "FirstName"
                         id="firstName"
+                        onChange={this.handleChange}
+                        value = {FirstName || ''}
 
                     />
                   </div>
@@ -78,8 +80,10 @@ class Clients extends Component{
                         type="text"
                         class="form-control"
                         placeholder="Enter last name"
-                        name="lastName"
+                        name="LastName"
                         id="lastName"
+                        onChange={this.handleChange}
+                        value = {LastName || ''}
 
                     />
                   </div>
@@ -93,8 +97,10 @@ class Clients extends Component{
                         type="text"
                         class="form-control"
                         placeholder="Enter email"
-                        name="emailAddress"
+                        name="EmailAddress"
                         id="emailAddress"
+                        onChange={this.handleChange}
+                        value = {EmailAddress || ''}
 
                     />
                   </div>
@@ -108,8 +114,10 @@ class Clients extends Component{
                         type="text"
                         class="form-control"
                         placeholder="Enter phone number"
-                        name="phoneNumber"
+                        name="PhoneNumber"
                         id="phoneNumber"
+                        onChange={this.handleChange}
+                        value = {PhoneNumber || ''}
 
                     />
                   </div>
@@ -123,8 +131,26 @@ class Clients extends Component{
                         type="text"
                         class="form-control"
                         placeholder="Enter location of legal issue"
-                        name="locationOfLegalIssue"
+                        name="StateOfIssue"
                         id="locationOfLegalIssue"
+                        onChange={this.handleChange}
+                        value = {StateOfIssue || ''}
+
+                    />
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <h5>Description:</h5>
+                  <div>
+                    <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Enter description of legal issue"
+                        name="Description"
+                        id="Description"
+                        onChange={this.handleChange}
+                        value = {Description || ''}
 
                     />
                   </div>
