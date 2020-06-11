@@ -50,53 +50,95 @@ class Clients extends Component{
     
     const { FirstName, LastName, PhoneNumber, EmailAddress, Description, StateOfIssue } = this.state;
     return (
-      <div className="section is-fullheight">
-        <div className="container">
-          <div className="column is-4 is-offset-4">
-            <div className="box">
+        <div className="App">
+            <div className="container" id="registration-form">
+                <div className="image"></div>
+                <div className="frm">
+                    <h1>Case Form</h1>
               <form onSubmit={this.onSubmit}>
-                <div className="field">
-                  <label className="label">First Name</label>
-                  <div className="control">
-                    <input className="input" type="text" name="FirstName" onChange={this.handleChange} value={FirstName || ''} required />
+                <div class="form-group">
+                  <h5>First Name:</h5>
+                  <div>
+                    <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Enter first name"
+                        name="firstName"
+                        id="firstName"
+
+                    />
                   </div>
                 </div>
-                <div className="field">
-                  <label className="label">Last Name</label>
-                  <div className="control">
-                    <input className="input" type="text" name="LastName" onChange={this.handleChange} value={LastName || ''} required />
+
+
+                <div class="form-group">
+                  <h5>Last Name:</h5>
+                  <div>
+                    <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Enter last name"
+                        name="lastName"
+                        id="lastName"
+
+                    />
                   </div>
                 </div>
-                <div className="field">
-                  <label className="label">Phone Number</label>
-                  <div className="control">
-                    <input className="input" type="text" name="PhoneNumber" onChange={this.handleChange} value={PhoneNumber || ''} required />
+
+
+                <div class="form-group">
+                  <h5>Email:</h5>
+                  <div>
+                    <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Enter email"
+                        name="emailAddress"
+                        id="emailAddress"
+
+                    />
                   </div>
                 </div>
-                <div className="field">
-                  <label className="label">Email Address</label>
-                  <div className="control">
-                    <input className="input" type="email" name="EmailAddress" onChange={this.handleChange} value={EmailAddress || ''} required />
+
+
+                <div class="form-group">
+                  <h5>Phone Number:</h5>
+                  <div>
+                    <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Enter phone number"
+                        name="phoneNumber"
+                        id="phoneNumber"
+
+                    />
                   </div>
                 </div>
-                <div className="field">
-                  <label className="label">Description</label>
-                  <div className="control">
-                    <input className="input" type="text" name="Description" onChange={this.handleChange} value={Description || ''} required />
+
+
+                <div class="form-group">
+                  <h5>Location of Legal Issue:</h5>
+                  <div>
+                    <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Enter location of legal issue"
+                        name="locationOfLegalIssue"
+                        id="locationOfLegalIssue"
+
+                    />
                   </div>
                 </div>
-                <div className="field">
-                  <label className="label">State Of Issue</label>
-                  <div className="control">
-                    <input className="input" type="text" name="StateOfIssue" onChange={this.handleChange} value={StateOfIssue || ''} required />
-                  </div>
+
+                <div class="form-group">
+                  <button type="submit" class="btn btn-success btn-lg">
+                    Submit
+                  </button>
                 </div>
-                <button type="submit" className="button is-block is-info is-fullwidth">Submit</button>
               </form>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     );
   }
 }
