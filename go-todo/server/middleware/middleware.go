@@ -56,6 +56,30 @@ func init() {
 	fmt.Println("Collection instance created!")
 }
 
+func getClientsInfo() []primitive.M {
+	cur, err := collection.Find(context.Background(), bson.D{{}})
+	if err != nil {
+		log.Fatal(err)
+	}
+	var results []primitive.M
+	for cur.Next(context.Background()) {
+		var result bson.M
+		e := cur.Decode(&result)
+		if e != nil {
+			log.Fatal(e)
+		}
+		// fmt.Println("cur..>", cur, "result", reflect.TypeOf(result), reflect.TypeOf(result["_id"]))
+		// results will contain the emails of lawyers
+		results = append(results, result)
+
+	}
+	if err := cur.Err(); err != nil {
+		log.Fatal(err)
+	}
+
+	cur.Close(context.Background())
+	return results
+}
 
 // GetAllLawyerEmails Gets all the email addresses of lawyers from the database
 func GetAllLawyerEmails(w http.ResponseWriter, r *http.Request) {
@@ -65,7 +89,7 @@ func GetAllLawyerEmails(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(payload)
 }
 
-func sendEmails(){
+func sendEmails() {
 	//sendemails
 }
 
@@ -80,10 +104,12 @@ func CreateClientsInfo(w http.ResponseWriter, r *http.Request) {
 	insertOneClient(client)
 	json.NewEncoder(w).Encode(client)
 	fmt.Println(client)
+	fmt.Println(getClientsInfo())
 
 }
 
-func insertOneClient(client models.Clients) {
+//
+func insertOneClient(client models.Clients) *mongo.InsertOneResult {
 	insertResult, err := collection.InsertOne(context.Background(), client)
 
 	if err != nil {
@@ -91,7 +117,8 @@ func insertOneClient(client models.Clients) {
 	}
 
 	fmt.Println("Inserted a Single Record ", insertResult.InsertedID)
-}
+	return insertResult
+} //insertResult contains all info
 
 // get all task from the DB and return it
 func getAllLawyers() []primitive.M {
@@ -102,7 +129,7 @@ func getAllLawyers() []primitive.M {
 
 	var results []primitive.M
 	for cur.Next(context.Background()) {
-		var result bson.M
+		var result bson.M //bson Map object {"a": 1, "b": true}
 		e := cur.Decode(&result)
 		if e != nil {
 			log.Fatal(e)

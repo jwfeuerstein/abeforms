@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Card, Icon } from "semantic-ui-react";
 import './App.css';
-import { useForm } from "react-hook-form";
 
 let endpoint = "http://localhost:8080";
 
@@ -37,7 +35,7 @@ class Clients extends Component{
         PhoneNumber: PhoneNumber,
         EmailAddress: EmailAddress,
         Description: Description,
-        StateOfIssue
+        StateOfIssue: StateOfIssue
       },
       {
       headers: {
@@ -56,7 +54,7 @@ class Clients extends Component{
         <div className="container">
           <div className="column is-4 is-offset-4">
             <div className="box">
-              <form onSubmit={this.login}>
+              <form onSubmit={this.onSubmit}>
                 <div className="field">
                   <label className="label">First Name</label>
                   <div className="control">
@@ -93,7 +91,7 @@ class Clients extends Component{
                     <input className="input" type="text" name="StateOfIssue" onChange={this.handleChange} value={StateOfIssue || ''} required />
                   </div>
                 </div>
-                <button type="submit" className="button is-block is-info is-fullwidth" onClick={this.onSubmit}>Submit</button>
+                <button type="submit" className="button is-block is-info is-fullwidth">Submit</button>
               </form>
             </div>
           </div>
