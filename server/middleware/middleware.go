@@ -196,4 +196,76 @@ func getAllLawyers() []primitive.M {
 
 	cur.Close(context.Background())
 	return results //primitive.M object of bSON objects
+} //insertResult contains all info
+
+// get all task from the DB and return it
+
+func insertOneLawyer(lawyer models.LawyerSignUp) *mongo.InsertOneResult {
+	insertResult, err := lawyerCollection.InsertOne(context.Background(), lawyer)
+
+	if err != nil {
+		log.Fatal(err)
+	} else {
+		fmt.Println("Client Added")
+	}
+	return insertResult
+}
+
+func LawyerSignUp(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Context-Type", "application/x-www-form-urlencoded")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Allow-Methods", "POST")
+	w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+
+	var lawyerSignUp models.LawyerSignUp
+	_ = json.NewDecoder(r.Body).Decode(&lawyerSignUp)
+	insertOneLawyer(lawyerSignUp)
+
+	json.NewEncoder(w).Encode(lawyerSignUp)
+
+}
+
+/*
+	lawyersPrimitive := getAllLawyers()
+
+	lawyerInfo := map[string]string{
+		"FirstName":      lawyerSignUp.FirstName,
+		"LastName":       lawyerSignUp.LastName,
+		"EmailAddress":   lawyerSignUp.EmailAddress,
+		"PhoneNumber":    lawyerSignUp.PhoneNumber,
+		"StateOfLicense": lawyerSignUp.StateOfLicense,
+		"Expertise":      lawyerSignUp.Expertise,
+		"Password":       lawyerSignUp.Password,
+		"RetypePassword": lawyerSignUp.RetypePassword,
+	}
+	fmt.Println(lawyerInfo)
+	fmt.Println(lawyersPrimitive)*/
+
+func LawyerSignIn(w http.ResponseWriter, r *http.Request) {
+
+	w.Header().Set("Context-Type", "application/x-www-form-urlencoded")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Allow-Methods", "POST")
+	w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+
+	var lawyerSignIn models.LawyerSignIn
+	_ = json.NewDecoder(r.Body).Decode(&lawyerSignIn)
+	auth := lawyerAuth(lawyerSignIn.EmailAddress, lawyerSignIn.Password)
+
+}
+
+func lawyerAuth(email string, pass string) bool {
+	lawyersPrimitive := getAllLawyers()
+	var auth = false
+
+	for _, b := range lawyersPrimitive {
+		if email == b[("emailaddress")].(string) && pass == b[("password")].(string) {
+			fmt.Println("Signed In")
+			auth = true
+		}
+	}
+	if auth == false {
+		fmt.Println("Authentication Failed!")
+	}
+	return auth
 }

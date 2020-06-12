@@ -1,12 +1,10 @@
 import React, { Component } from "react";
 import axios from "axios";
 import './App.css';
+import { Container } from "semantic-ui-react";
 
 let endpoint = "http://localhost:8080";
 
-
-
- 
 class Clients extends Component{
   constructor(props){
     super (props);
@@ -28,7 +26,7 @@ class Clients extends Component{
   onSubmit = () =>{
     
     const { FirstName, LastName, PhoneNumber, EmailAddress, Description, StateOfIssue, FindHow, SocialMedia } = this.state;
-    axios.post(endpoint + "/api/client",
+    axios.post(endpoint + "/client/api/client",
       {
         FirstName: FirstName,
         LastName: LastName,
@@ -52,6 +50,7 @@ class Clients extends Component{
     
     const { FirstName, LastName, PhoneNumber, EmailAddress, Description, StateOfIssue, FindHow, SocialMedia } = this.state;
     return (
+      <Container>
         <div className="App">
             <div className="container" id="registration-form">
                 <div className="image"></div>
@@ -199,6 +198,7 @@ class Clients extends Component{
                 </div>
             </div>
         </div>
+        </Container>
     );
   }
 }
