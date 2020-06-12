@@ -27,7 +27,7 @@ class Clients extends Component{
 
   onSubmit = () =>{
     
-    const { FirstName, LastName, PhoneNumber, EmailAddress, Description, StateOfIssue } = this.state;
+    const { FirstName, LastName, PhoneNumber, EmailAddress, Description, StateOfIssue, FindHow, SocialMedia } = this.state;
     axios.post(endpoint + "/api/client",
       {
         FirstName: FirstName,
@@ -35,7 +35,9 @@ class Clients extends Component{
         PhoneNumber: PhoneNumber,
         EmailAddress: EmailAddress,
         Description: Description,
-        StateOfIssue: StateOfIssue
+        StateOfIssue: StateOfIssue,
+        findHow: FindHow,
+        socialMedia: SocialMedia
       },
       {
       headers: {
@@ -48,7 +50,7 @@ class Clients extends Component{
   
   render() {
     
-    const { FirstName, LastName, PhoneNumber, EmailAddress, Description, StateOfIssue } = this.state;
+    const { FirstName, LastName, PhoneNumber, EmailAddress, Description, StateOfIssue, FindHow, SocialMedia } = this.state;
     return (
         <div className="App">
             <div className="container" id="registration-form">
@@ -151,6 +153,38 @@ class Clients extends Component{
                         id="Description"
                         onChange={this.handleChange}
                         value = {Description || ''}
+
+                    />
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <h5>How did you find Abe Legal?</h5>
+                  <div>
+                    <input
+                        type="text"
+                        class="form-control"
+                        placeholder=""
+                        name="FindHow"
+                        id="FindHow"
+                        onChange={this.handleChange}
+                        value = {FindHow || ''}
+
+                    />
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <h5>Share your Social Media: (Instagram, Twitter)</h5>
+                  <div>
+                    <input
+                        type="text"
+                        class="form-control"
+                        placeholder=""
+                        name="SocialMedia"
+                        id="SocialMedia"
+                        onChange={this.handleChange}
+                        value = {SocialMedia || ''}
 
                     />
                   </div>

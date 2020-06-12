@@ -102,13 +102,19 @@ func GetAllLawyerEmails() []primitive.M {
 func sendEmails(lawyerEmails []string, clientInfo map[string]string) {
 
 	fmt.Println("Goes to Emails")
-	auth := smtp.PlainAuth("", "Sender Email", "Password", "smtp.gmail.com")
+	auth := smtp.PlainAuth("", "EMAIL", "PASS", "smtp.gmail.com")
 	to := lawyerEmails
 	msg := []byte("To: " + clientInfo["Email"] + "\r\n" +
-		"Subject: New Client Alert\r\n" +
+		"Subject: Abe Consult Alert\r\n" +
 		"\r\n" +
-		clientInfo["FirstName"] + "\r\n")
-	err := smtp.SendMail("smtp.gmail.com:587", auth, "Sender Email", to, msg)
+		"Colleagues, " + "\r\n" +
+		"We have a customer seeking a consultation. See the details below: " +
+		"Name: " + clientInfo["FirstName"] + " " + clientInfo["LastName"] + "\r\n" +
+		"Location: " + clientInfo["Location"] + "\r\n" +
+		"Description: " + clientInfo["Description"] + "\r\n" +
+		"Are you interested in doing a consultation? If so, reply to this email ASAP.\r\n" +
+		"Talib - Abe Legal Director & Co-Founder")
+	err := smtp.SendMail("smtp.gmail.com:587", auth, "EMAIL", to, msg)
 	if err != nil {
 		log.Fatal(err)
 	} else {
@@ -143,6 +149,8 @@ func CreateClientsInfo(w http.ResponseWriter, r *http.Request) {
 		"PhoneNumber":  client.PhoneNumber,
 		"Location":     client.StateOfIssue,
 		"Description":  client.Description,
+		"FindHow":      client.FindHow,
+		"SocialMedia":  client.SocialMedia,
 	}
 
 	fmt.Println(lawyersEmails)

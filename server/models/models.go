@@ -10,4 +10,6 @@ type Clients struct {
 	EmailAddress string             `json:"EmailAddress,omitempty"`
 	Description  string             `json:"Description,omitempty"`
 	StateOfIssue string             `json:"StateOfIssue,omitempty"`
+	FindHow      string             `json:"FindHow,omitempty"`
+	SocialMedia  string             `json:"SocialMedia,omitempty"`
 }
