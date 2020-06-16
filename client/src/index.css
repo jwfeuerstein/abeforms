@@ -1,172 +1,136 @@
-html {
-  background: #2c3e50; /* fallback for old browsers */
-  background: -webkit-linear-gradient(
-    to right,
-    #4ca1af,
-    #2c3e50
-  ); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(
-    to right,
-    #4ca1af,
-    #2c3e50
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+body {
+  background-color: white;
+  font-family: source-sans-pro, sans-serif;
 }
 
-body {
-  background-color: transparent;
+div {
+  width: 600px;
+  margin: auto;
+  margin-right: 40%;
+  margin-top: 0px;
+}
+
+.App {
+  width: 1000px !important;
+}
+
+h2 {
+  margin: 0%;
+  color: white;
+}
+
+p {
+  margin-left: 49%;
+}
+h3 {
+  margin-left: 28%;
+  font-family: "Montserrat", sans-serif;
+}
+
+input:focus {
+  color: black;
+  font-size: 20px;
+}
+
+label,
+input,
+select {
+  display: inline-block !important;
+  margin: 5px;
+  font-family: "Raleway", sans-serif;
+  color: black !important;
+  font-size: 20px !important;
 }
 
 .logo {
-  width: 12%;
-  height: 12%;
+  float: left;
+  width: 15%;
+  height: 15%;
+  margin-left: 0% !important;
+  margin-right: 50% !important;
+  margin-top: 10px !important;
 }
 
-#registration-form .frm {
-  height: auto;
-  width: 50%;
-  min-width: 450px;
-  padding: 20px 30px 30px 50px;
-  background-color: white;
-  position: absolute;
-  margin-top: 22%;
-  margin-left: 30%;
-  margin-right: 20%;
-  margin-bottom: 20%;
-  transform: translate(-50%, -50%);
-  border-radius: 100px;
-}
-
-h5 {
-  text-align: left;
+.form-group {
+  /* Other styling... */
+  text-align: right;
+  clear: both;
+  float: left;
+  margin-right: 15px;
 }
 
 h1 {
-  margin-top: 30px;
+  font-family: "Montserrat", sans-serif;
+  margin-left: 30%;
+  margin-top: 50px;
+  text-align: center;
+  font-weight: 100;
+  font-size: 2.8em;
+  color: rgb(0, 171, 203);
+}
+
+.formStyle {
+  background-color: #e2e2e2;
+  padding: 20px;
+  width: 400px;
   margin-bottom: 20px;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: #ecf0f1;
+  border-top-style: none;
+  border-right-style: none;
+  border-left-style: none;
+  font-size: 1em;
+  font-weight: 100;
+  color: #ffffff;
 }
 
-/*iPad in portrait & landscape*/
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
-  #registration-form .frm {
-    height: auto;
-    width: 70%;
-    min-width: 350px;
-    padding: 20px;
-    background-color: white;
-    position: absolute;
-    top: 20%;
-    left: 20%;
-    margin-right: -50%;
-  }
-  html {
-    background-size: 250%;
-  }
+.formButton {
+  float: right;
+  background-color: rgb(255, 218, 101);
+  display: inline-block;
+  color: white;
+  font-size: 20px;
+  font-weight: 500;
+  padding: 6px 24px;
+  margin-top: 5px;
+  margin-right: 25%;
+  margin-bottom: 10px;
+  text-decoration: none;
+  border-radius: 35%;
 }
 
-/*iPhone 6, 7, & 8 in portrait & landscape*/
-@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (max-device-height: 667px) {
-  #registration-form .frm {
-    height: auto;
-    width: 70%;
-    min-width: 350px;
-    padding: 20px;
-    background-color: white;
-    position: absolute;
-    top: 45%;
-    left: 20%;
-  }
-  html {
-    background-size: 260%;
-  }
-
-  .logo {
-    width: 20%;
-    height: 20%;
-  }
+.formButton:hover {
+  background-color: rgb(255, 218, 101);
+  color: #ffffff;
 }
 
-/*iPhone X in portrait & landscape*/
-@media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-device-pixel-ratio: 3) and (max-device-height: 812px) {
-  #registration-form .frm {
-    height: auto;
-    width: 70%;
-    min-width: 350px;
-    padding: 20px;
-    background-color: white;
-    position: absolute;
-    top: 38%;
-    left: 20%;
-  }
-  html {
-    background-size: 260%;
-  }
-
-  .logo {
-    width: 20%;
-    height: 20%;
-  }
+.formButton:active {
+  position: relative;
+  top: 3px;
+  color: white;
 }
 
-/*Galaxy S5*/
-@media only screen and (min-device-width: 360px) and (max-device-width: 374px) and (-webkit-device-pixel-ratio: 3) {
-  #registration-form .frm {
-    height: auto;
-    min-width: 340px;
-    padding: 20px;
-    background-color: white;
-    position: absolute;
-    top: 50%;
-    left: 20%;
-  }
-  html {
-    background-size: 260%;
-  }
-
-  .logo {
-    width: 20%;
-    height: 20%;
-  }
+/*To remove the outline that appears on clicking the input textbox*/
+input:focus {
+  outline: none;
 }
 
-/*Phone 5 & 5S in portrait & landscape*/
-@media only screen and (min-device-width: 320px) and (max-device-width: 374px) and (max-device-height: 639px) and (min-device-height: 568px) {
-  #registration-form .frm {
-    height: auto;
-    min-width: 300px;
-    padding: 20px;
-    background-color: white;
-    position: absolute;
-    top: 58%;
-    left: 20%;
-  }
-  html {
-    background-size: 260%;
-  }
-
-  .logo {
-    width: 20%;
-    height: 20%;
-  }
+/* To format the placeholder text color */
+::-webkit-input-placeholder {
+  color: #ecf0f1;
 }
 
-/*pixel 2*/
-@media only screen and (min-width: 411px) and (max-width: 767px) {
-  #registration-form .frm {
-    height: auto;
-    width: 70%;
-    min-width: 350px;
-    padding: 20px;
-    background-color: white;
-    position: absolute;
-    top: 40%;
-    left: 18%;
-  }
-  html {
-    background-size: 260%;
-  }
+:-moz-placeholder {
+  /* Firefox 18- */
+  color: #ecf0f1;
+}
 
-  .logo {
-    width: 20%;
-    height: 20%;
-  }
+::-moz-placeholder {
+  /* Firefox 19+ */
+  color: #ecf0f1;
+}
+
+:-ms-input-placeholder {
+  color: #ecf0f1;
 }

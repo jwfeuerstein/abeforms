@@ -68,21 +68,19 @@ class Clients extends Component {
       SocialMedia,
     } = this.state;
     return (
-      <div>
+      <div id="form">
         <img src={abeLogo} className="logo" alt="logo"></img>
         <div className="App">
           <div className="container" id="registration-form">
-            <div className="image"></div>
-
             <div className="frm">
-              <h1>Case Form</h1>
+              <h1 className="CF">Case Form</h1>
               <form className="containerWithoutTitle" onSubmit={this.onSubmit}>
-                <div class="form-group">
+                <div className="form-group">
                   <h5>First Name:</h5>
                   <div>
                     <input
                       type="text"
-                      class="form-control"
+                      className="form-control"
                       placeholder="Enter first name"
                       name="FirstName"
                       id="firstName"
@@ -92,12 +90,12 @@ class Clients extends Component {
                   </div>
                 </div>
 
-                <div class="form-group">
+                <div className="form-group">
                   <h5>Last Name:</h5>
                   <div>
                     <input
                       type="text"
-                      class="form-control"
+                      className="form-control"
                       placeholder="Enter last name"
                       name="LastName"
                       id="lastName"
@@ -107,12 +105,12 @@ class Clients extends Component {
                   </div>
                 </div>
 
-                <div class="form-group">
+                <div className="form-group">
                   <h5>Email:</h5>
                   <div>
                     <input
                       type="text"
-                      class="form-control"
+                      className="form-control"
                       placeholder="Enter email"
                       name="EmailAddress"
                       id="emailAddress"
@@ -122,12 +120,12 @@ class Clients extends Component {
                   </div>
                 </div>
 
-                <div class="form-group">
+                <div className="form-group">
                   <h5>Phone Number:</h5>
                   <div>
                     <input
                       type="text"
-                      class="form-control"
+                      className="form-control"
                       placeholder="Enter phone number"
                       name="PhoneNumber"
                       id="phoneNumber"
@@ -137,12 +135,12 @@ class Clients extends Component {
                   </div>
                 </div>
 
-                <div class="form-group">
+                <div className="form-group">
                   <h5>Location of Legal Issue:</h5>
                   <div>
                     <input
                       type="text"
-                      class="form-control"
+                      className="form-control"
                       placeholder="Enter location of legal issue"
                       name="StateOfIssue"
                       id="locationOfLegalIssue"
@@ -152,12 +150,12 @@ class Clients extends Component {
                   </div>
                 </div>
 
-                <div class="form-group">
+                <div className="form-group">
                   <h5>Description:</h5>
                   <div>
                     <input
                       type="text"
-                      class="form-control"
+                      className="form-control"
                       placeholder="Enter description of legal issue"
                       name="Description"
                       id="Description"
@@ -167,12 +165,12 @@ class Clients extends Component {
                   </div>
                 </div>
 
-                <div class="form-group">
+                <div className="form-group">
                   <h5>How did you find Abe Legal?</h5>
                   <div>
                     <input
                       type="text"
-                      class="form-control"
+                      className="form-control"
                       placeholder="Enter the way you find Abe Legal"
                       name="FindHow"
                       id="FindHow"
@@ -182,12 +180,12 @@ class Clients extends Component {
                   </div>
                 </div>
 
-                <div class="form-group">
+                <div className="form-group">
                   <h5>Share your Social Media: (Instagram, Twitter, etc)</h5>
                   <div>
                     <input
                       type="text"
-                      class="form-control"
+                      className="form-control"
                       placeholder="Enter your social media ID "
                       name="SocialMedia"
                       id="SocialMedia"
@@ -196,12 +194,9 @@ class Clients extends Component {
                     />
                   </div>
                 </div>
-
-                <div class="form-group">
-                  <button type="submit" class="btn btn-success btn-lg">
-                    Submit
-                  </button>
-                </div>
+                <button type="submit" className="submit">
+                  Submit
+                </button>
               </form>
             </div>
           </div>
