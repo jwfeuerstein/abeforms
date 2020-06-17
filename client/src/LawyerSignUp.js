@@ -183,15 +183,15 @@ class LawyerSignUp extends Component {
                 </div>
 
                 <div>
-                  <a type="submit" class="formButton">
+                  <button type="submit" class="formButton">
                     Submit
-                  </a>
+                  </button>
                 </div>
 
                 <div>
                   <p>
                     Already have an account? Click{" "}
-                    <a href="/lawyerdashboard">here</a>
+                    <a href="/lawyerdashboard/sign_in">here</a>
                   </p>
                 </div>
               </form>

@@ -37,8 +37,8 @@ input,
 select {
   display: inline-block !important;
   margin: 5px;
-  font-family: "Raleway", sans-serif;
-  color: black !important;
+  font-family: "Libre Franklin", sans-serif;
+  color: grey !important;
   font-size: 20px !important;
 }
 
@@ -133,4 +133,14 @@ input:focus {
 
 :-ms-input-placeholder {
   color: #ecf0f1;
+}
+
+@media screen and (max-width: 600px) {
+  div {
+    width: 50%;
+    margin: 0px;
+  }
+  h1 {
+    margin-right: 100%;
+  }
 }

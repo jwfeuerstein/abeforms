@@ -1,101 +1,112 @@
 import React, { Component } from "react";
 import axios from "axios";
-import './App.css';
-import { Container } from "semantic-ui-react";
-
+import "./App.css";
+import { Container, Form } from "semantic-ui-react";
+import { Redirect } from "react-router-dom";
+import abeLogo from "./abeLogo.png";
 
 let endpoint = "http://localhost:8080";
 
-class LawyerSignIn extends Component{
-    constructor(props){
-      super (props);
-      this.state = {
-        EmailAddress: "",
-        Password: "",
-      };
-    }
-    handleChange = (event) =>{
-      this.setState({
-        [event.target.name]: event.target.value,
-      });
-    }
-  
-    onSubmit = () =>{
-      
-      const { EmailAddress, Password } = this.state;
-      axios.post(endpoint + "/lawyerdashboard/api/signin",
+class LawyerSignIn extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      EmailAddress: "",
+      Password: "",
+      redirect: "",
+    };
+  }
+  handleChange = (event) => {
+    this.setState({
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  onPress = () => {
+    const { EmailAddress, Password } = this.state;
+    axios
+      .post(
+        endpoint + "/lawyerdashboard/api/signin",
         {
           EmailAddress: EmailAddress,
           Password: Password,
         },
         {
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded"
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
         }
-      }
-      ).then((response) => {
-          console.log(response);
-      })
-      };
-    
-    
-    render() {
-      
-        const { EmailAddress, Password } = this.state;
-      return (
-        <Container>
-          <div className="App">
-              <div className="container" id="registration-form">
-                  <div className="image"></div>
-                  <div className="frm">
-                      <h1>Create your Abe Legal Account</h1>
-                <form onSubmit={this.onSubmit}>
-                  <div class="form-group">
-                    <h5>Email Address:</h5>
-                    <div>
-                      <input
-                          type="text"
-                          class="form-control"
-                          placeholder="Enter email address"
-                          name= "EmailAddress"
-                          id="EmailAddress"
-                          onChange={this.handleChange}
-                          value = {EmailAddress || ''}
-  
-                      />
-                    </div>
-                  </div>
-  
-  
-                  <div class="form-group">
-                    <h5>Password:</h5>
-                    <div>
-                      <input
-                          type="password"
-                          class="form-control"
-                          placeholder="Enter password"
-                          name="Password"
-                          id="Password"
-                          onChange={this.handleChange}
-                          value = {Password || ''}
-  
-                      />
-                    </div>
-                  </div>
-  
-                  <div class="form-group">
-                    <button type="submit" class="btn btn-success btn-lg">
-                      Submit
-                    </button>
-                  </div>
-                  <p>Don't have an account? Click <a href="/lawyerdashboard/sign_up">here</a></p>
-                </form>
-                  </div>
-              </div>
-          </div>
-          </Container>
-      );
-    }
-  }
+      )
+      .then((res) => {
+        this.getAuthentication();
+      });
+  };
 
-export default LawyerSignIn
+  getAuthentication = () => {
+    axios.get(endpoint + "/lawyerdashboard/api/signin").then((res) => {
+      if (res.data) {
+        this.setState({ redirect: true });
+      }
+    });
+  };
+
+  render() {
+    const { EmailAddress, Password } = this.state;
+    if (this.state.redirect) {
+      return <Redirect to={"/lawyerdashboard"} />;
+    }
+    return (
+      <Container>
+        <div className="App">
+          <img src={abeLogo} className="logo" alt="logo"></img>
+          <div>
+            <h2>BLANK</h2>
+            <h1>Sign In</h1>
+            <h3>To continue to your dashboard</h3>
+            <div>
+              <form onSubmit={this.onSubmit}>
+                <div className="form-group">
+                  <label for="EmailAddress">Email Address</label>
+                  <input
+                    type="email"
+                    name="EmailAddress"
+                    id="EmailAddress"
+                    class="formStyle"
+                    placeholder=""
+                    onChange={this.handleChange}
+                    value={EmailAddress || ""}
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label for="Password">Password</label>
+                  <input
+                    type="password"
+                    name="Password"
+                    id="Password"
+                    class="formStyle"
+                    placeholder=""
+                    onChange={this.handleChange}
+                    value={Password || ""}
+                  />
+                </div>
+
+                <div>
+                  <button type="submit" class="formButton">
+                    Submit
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+          <p>
+            Don't have an account? Create one{" "}
+            <a href="/lawyerdashboard/sign_up">here</a>
+          </p>
+        </div>
+      </Container>
+    );
+  }
+}
+
+export default LawyerSignIn;
