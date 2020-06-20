@@ -10,10 +10,6 @@ div {
   margin-top: 0px;
 }
 
-.App {
-  width: 1000px !important;
-}
-
 h2 {
   margin: 0%;
   color: white;
@@ -44,8 +40,8 @@ select {
 
 .logo {
   float: left;
-  width: 15%;
-  height: 15%;
+  width: 30%;
+  height: 30%;
   margin-left: 0% !important;
   margin-right: 50% !important;
   margin-top: 10px !important;
@@ -137,10 +133,23 @@ input:focus {
 
 @media screen and (max-width: 600px) {
   div {
-    width: 50%;
-    margin: 0px;
+    width: 300px;
   }
   h1 {
-    margin-right: 100%;
+    margin-right: 90% !important;
+    float: left !important;
+  }
+  h3 {
+    margin-right: 23%;
+  }
+  label {
+    float: left;
+  }
+  p {
+    margin-right: 34%;
+  }
+  input {
+    width: 95% !important;
+    float: left;
   }
 }
