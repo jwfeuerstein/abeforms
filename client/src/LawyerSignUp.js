@@ -74,14 +74,18 @@ class LawyerSignUp extends Component {
       <Container>
         <div className="App">
           <img src={abeLogo} className="logo" alt="logo"></img>
-          <div>
-            <h2>BLANK</h2>
-            <h1>Create your account</h1>
-            <h3>To register as an Abe Counsel, fill in info below</h3>
-            <div>
+          <div className="form-style">
+            <h2 className="blank">BLANK</h2>
+            <h1 className="heading">Create your account</h1>
+            <h3 className="subheading">
+              To register as an Abe Counsel, fill in info below
+            </h3>
+            <div className="form-style">
               <form onSubmit={this.onSubmit}>
                 <div className="form-group">
-                  <label for="FirstName">First Name</label>
+                  <label className="labels" for="FirstName">
+                    First Name
+                  </label>
                   <input
                     type="text"
                     id="FirstName"
@@ -94,7 +98,9 @@ class LawyerSignUp extends Component {
                 </div>
 
                 <div className="form-group">
-                  <label for="LastName">Last Name</label>
+                  <label className="labels" for="LastName">
+                    Last Name
+                  </label>
                   <input
                     type="text"
                     class="formStyle"
@@ -106,7 +112,9 @@ class LawyerSignUp extends Component {
                 </div>
 
                 <div className="form-group">
-                  <label for="EmailAddress">Email Address</label>
+                  <label className="labels" for="EmailAddress">
+                    Email Address
+                  </label>
                   <input
                     type="email"
                     name="EmailAddress"
@@ -119,7 +127,9 @@ class LawyerSignUp extends Component {
                 </div>
 
                 <div className="form-group">
-                  <label for="PhoneNumber">Phone Number</label>
+                  <label className="labels" for="PhoneNumber">
+                    Phone Number
+                  </label>
                   <input
                     type="text"
                     name="PhoneNumber"
@@ -132,7 +142,9 @@ class LawyerSignUp extends Component {
                 </div>
 
                 <div className="form-group">
-                  <label for="StateOfLicense">State of License</label>
+                  <label className="labels" for="StateOfLicense">
+                    State of License
+                  </label>
                   <input
                     type="text"
                     id="StateOfLicense"
@@ -145,7 +157,9 @@ class LawyerSignUp extends Component {
                 </div>
 
                 <div className="form-group">
-                  <label for="Expertise">Area of Expertise</label>
+                  <label className="labels" for="Expertise">
+                    Area of Expertise
+                  </label>
                   <input
                     type="text"
                     id="Expertise"
@@ -158,7 +172,9 @@ class LawyerSignUp extends Component {
                 </div>
 
                 <div className="form-group">
-                  <label for="Password">Password</label>
+                  <label className="labels" for="Password">
+                    Password
+                  </label>
                   <input
                     type="password"
                     name="Password"
@@ -171,7 +187,9 @@ class LawyerSignUp extends Component {
                 </div>
 
                 <div className="form-group">
-                  <label for="RetypePassword">Confirm Password</label>
+                  <label className="labels" for="RetypePassword">
+                    Confirm Password
+                  </label>
                   <input
                     type="password"
                     name="RetypePassword"
@@ -189,7 +207,7 @@ class LawyerSignUp extends Component {
                 </div>
 
                 <div>
-                  <p>
+                  <p className="already">
                     Already have an account? Click{" "}
                     <a href="/lawyerdashboard/sign_in">here</a>
                   </p>
